@@ -1,5 +1,5 @@
 
-import { Builder, Capabilities, By } from "selenium-webdriver"
+import { Builder, Capabilities, By, Key } from "selenium-webdriver"
 
 require('chromedriver')
 
@@ -36,16 +36,21 @@ test('Add to duo button displays player-duo', async () => {
     expect(playerOnDuo).toBeTruthy;
 })
 
-test('Remove from duo button', async () => {
-    const removeBtn = await driver.findElement(By.xpath('//*[@id="remove"]'))
-    await removeBtn.click()
-
-    //button[contains(text(), 'Remove from Duo')]
-    //*[@id="player-duo"]/div/button
-    
+test('Remove button working', async () => {
+    const drawBtn = await driver.findElement(By.id('draw'))
+    await drawBtn.click()
     await driver.sleep(2000)    
-    
+    const addToDuoBtn = await driver.findElement(By.className('bot-btn'))
+    await addToDuoBtn.click()
+    await driver.sleep(2000)
+
+    const removeBtn = await driver.findElement(By.xpath("//section/section/div/div/button"))
     const playerOnDuo = await driver.findElement(By.xpath('//*[@id="player-duo"]/div'))
+
+    await removeBtn.click();
+    await driver.sleep(2000)
+
+
     //*[@id="player-duo"]/div
     await driver.sleep(2000)
     expect(playerOnDuo).toBeNull;
