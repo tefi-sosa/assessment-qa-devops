@@ -44,7 +44,7 @@ test('Remove button working', async () => {
     await addToDuoBtn.click()
     await driver.sleep(2000)
 
-    const removeBtn = await driver.findElement(By.xpath("//section/section/div/div/button"))
+    const removeBtn = await driver.findElement(By.xpath("//button[@id='remove']"))
     const playerOnDuo = await driver.findElement(By.xpath('//*[@id="player-duo"]/div'))
 
     await removeBtn.click();
